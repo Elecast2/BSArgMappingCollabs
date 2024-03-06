@@ -7,6 +7,8 @@ const partsPath = mapPath + '/Parts';
 const outputPath = mapPath + '/Output';
 const diffFileNames = ['EasyStandard','NormalStandard','HardStandard','ExpertStandard','ExpertPlusStandard'];
 
+let dataFormat = false;
+
 // Función para leer y parsear un archivo JSON
 function readJSON(filePath) {
     return JSON.parse(fs.readFileSync(filePath, 'utf8'));
@@ -31,6 +33,7 @@ function mergeDiff(diffFileName) {
     
         let combinedNotes = [];
         let combinedObstacles = [];
+
     
         for (const subfolder of subfolders) {
             const filePath = path.join(partsPath, subfolder, diffFileName+'.dat');
@@ -38,6 +41,7 @@ function mergeDiff(diffFileName) {
                 const data = readJSON(filePath);
                 combinedNotes.push(...data._notes);
                 combinedObstacles.push(...data._obstacles);
+                if(!dataFormat) dataFormat = data;
             }
         }
     
@@ -50,7 +54,7 @@ function mergeDiff(diffFileName) {
 
         // Verificar si el archivo principal existe, si no, crear un esqueleto básico para él
         if (!fs.existsSync(filePath)) {
-            writeJSON(filePath, { _notes: [], _obstacles: [] });
+            writeJSON(filePath, dataFormat);
         }
 
         const mainData = readJSON(filePath);
@@ -73,6 +77,6 @@ if (!fs.existsSync(outputPath)) {
     fs.mkdirSync(outputPath, { recursive: true });
 }
 
-for(var i = 0; i < diffFileNames.length; i++) {
+for(var i = diffFileNames.length - 1; i >= 0 ; i--) {
     mergeDiff(diffFileNames[i]);
 }
