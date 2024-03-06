@@ -69,7 +69,7 @@ Para combinar las partes en un solo mapa, sigue estos pasos:
 2. Abre una terminal o CMD en este directorio.
 3. Ejecuta el script con Node.js:
 ```bash
-node merge.js
+node merge.js "Nombre del Mapa"
 ```
 El proceso leerá las partes de los mapas en la carpeta /Parts, las combinará y generará el archivo resultante en la carpeta /Output.
 
