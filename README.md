@@ -54,7 +54,7 @@ Si ya hiciste cambios a tu parte, sigue los siguientes pasos para actualizar el 
 1. Coloca los archivos .dat dentro de `Nombre del Mapa/Parts/TuNombre`
 2. Abre una terminal o CMD en la dirección principal del proyecto y ejecuta los siguientes comandos para actualualizar el proyecto remoto:
 ```bash
-git add ./Nombre del Mapa/Parts/TuNombre
+git add "./Nombre del Mapa/Parts/TuNombre/."
 git commit -m "Mensaje corto explicando muy brevemente los cambios, Ejemplo: Añadí mas paredes porque Derek me miro feo"
 git push origin main
 ```
