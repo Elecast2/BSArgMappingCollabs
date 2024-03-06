@@ -19,12 +19,44 @@ npm -v
 ```
 Esto debería mostrarte las versiones de Node.js y npm, respectivamente.
 
-## Ejecución del Script merge.js
-Para combinar las partes de los mapas en un único archivo .dat, sigue estos pasos:
+## Preparación
 
-Coloca las partes de cada colaborador en la subcarpeta adecuada dentro de /Parts.
-Abre una terminal o línea de comandos y navega al directorio del proyecto.
-Ejecuta el script con el siguiente comando:
+### Clonar el Proyecto
+
+Para colaborar en el proyecto o ejecutarlo localmente, primero necesitas clonar el repositorio a tu máquina local:
+
+Para ejecutar los comandos necesitas tener `git` instalado, puedes descargarlo de [git-scm.com](https://git-scm.com/).
+
+1. Abre una terminal o CMD y navega a la carpeta donde deseas almacenar el proyecto o haz click derecho dentro de la carpeta y en `Abrir en Terminal`.
+2. Ejecuta el siguiente comando:
+```bash
+git clone https://github.com/tu-usuario/BSArgMappingCollabs.git
+```
+3. Cambia al directorio del proyecto:
+```bash
+cd BSArgMappingCollabs
+```
+
+### Actualizar el Proyecto
+
+Para asegurarte de que tienes la versión más reciente del proyecto, realiza los siguientes pasos:
+
+1. Abre una terminal o CMD.
+2. Navega al directorio del proyecto o haz click derecho dentro de la carpeta y en `Abrir en Terminal`.
+3. Ejecuta el siguiente comando para actualizar tu proyecto:
+```bash
+git pull origin main
+```
+
+## Ejecución del Script
+
+Antes de ejecutar el script, debes colocar las partes del mapa de cada colaborador en la subcarpeta correspondiente dentro de `/Parts`.
+
+Para combinar las partes en un solo mapa, sigue estos pasos:
+
+1. Asegúrate de que estás en el directorio del proyecto `BSArgMappingCollabs`.
+2. Abre una terminal o CMD en este directorio.
+3. Ejecuta el script con Node.js:
 ```bash
 node merge.js
 ```
