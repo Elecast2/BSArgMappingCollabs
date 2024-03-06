@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const partsPath = './Parts';
+const outputPath = './Output';
 const diffFileNames = ['EasyStandard','NormalStandard','HardStandard','ExpertStandard','ExpertPlusStandard'];
 
 // Función para leer y parsear un archivo JSON
@@ -43,12 +44,13 @@ function mergeDiff(diffFileName) {
         combinedObstacles = combineAndSortArrays(combinedObstacles);
     
         // Leer el archivo principal y actualizar los arrays
-        const mainData = readJSON(diffFileName+'.dat');
+        const filePath = path.join(outputPath, diffFileName+'.dat');
+        const mainData = readJSON(filePath);
         mainData._notes = combinedNotes;
         mainData._obstacles = combinedObstacles;
     
         // Escribir el archivo actualizado
-        writeJSON(diffFileName+'.dat', mainData);
+        writeJSON(filePath, mainData);
     
         console.log('Archivo '+diffFileName+'.dat actualizado con éxito.');
     });
