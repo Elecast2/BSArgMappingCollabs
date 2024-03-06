@@ -71,7 +71,7 @@ Para combinar las partes en un solo mapa, sigue estos pasos:
 ```bash
 node merge.js "Nombre del Mapa"
 ```
-El proceso leerá las partes de los mapas en la carpeta /Parts, las combinará y generará el archivo resultante en la carpeta /Output.
+El proceso leerá las partes de los mapas en la carpeta /Parts, las combinará y generará los archivos resultantes en la carpeta /Output.
 
 ## Contribuir
 Para contribuir a este proyecto si ya eres un Mapper de Argentina, pregunta en nuestro [Discord](https://discord.gg/vrargentina)
