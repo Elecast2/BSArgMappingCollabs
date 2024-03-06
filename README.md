@@ -50,7 +50,7 @@ git pull origin main
 
 ## Ejecución del Script
 
-Antes de ejecutar el script, debes colocar las partes del mapa de cada colaborador en la subcarpeta correspondiente dentro de `/Parts`.
+Antes de ejecutar el script, asegúrate de colocar tus partes correspondientes (.dat) dentro de `/Parts/TuNombre`.
 
 Para combinar las partes en un solo mapa, sigue estos pasos:
 
