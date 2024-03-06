@@ -1,8 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const partsPath = './Parts';
-const outputPath = './Output';
+const partsPath = __dirname + '/Parts';
+const outputPath = __dirname + '/Output';
 const diffFileNames = ['EasyStandard','NormalStandard','HardStandard','ExpertStandard','ExpertPlusStandard'];
 
 // Función para leer y parsear un archivo JSON
@@ -45,6 +45,12 @@ function mergeDiff(diffFileName) {
     
         // Leer el archivo principal y actualizar los arrays
         const filePath = path.join(outputPath, diffFileName+'.dat');
+
+        // Verificar si el archivo principal existe, si no, crear un esqueleto básico para él
+        if (!fs.existsSync(filePath)) {
+            writeJSON(filePath, { _notes: [], _obstacles: [] });
+        }
+
         const mainData = readJSON(filePath);
         mainData._notes = combinedNotes;
         mainData._obstacles = combinedObstacles;
@@ -54,6 +60,10 @@ function mergeDiff(diffFileName) {
     
         console.log('Archivo '+diffFileName+'.dat actualizado con éxito.');
     });
+}
+
+if (!fs.existsSync(outputPath)) {
+    fs.mkdirSync(outputPath, { recursive: true });
 }
 
 for(var i = 0; i < diffFileNames.length; i++) {
