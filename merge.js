@@ -1,8 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 
-const partsPath = __dirname + '/Parts';
-const outputPath = __dirname + '/Output';
+const mapPath = './' + process.argv[2];
+
+const partsPath = mapPath + '/Parts';
+const outputPath = mapPath + '/Output';
 const diffFileNames = ['EasyStandard','NormalStandard','HardStandard','ExpertStandard','ExpertPlusStandard'];
 
 // Función para leer y parsear un archivo JSON
@@ -60,6 +62,11 @@ function mergeDiff(diffFileName) {
     
         console.log('Archivo '+diffFileName+'.dat actualizado con éxito.');
     });
+}
+
+if(!fs.existsSync(mapPath)) {
+    console.log("No hay mapa con ese nombre");
+    return;
 }
 
 if (!fs.existsSync(outputPath)) {
