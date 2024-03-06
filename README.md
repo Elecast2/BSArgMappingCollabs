@@ -75,8 +75,3 @@ El proceso leerá las partes de los mapas en la carpeta /Parts, las combinará y
 
 ## Contribuir
 Para contribuir a este proyecto si ya eres un Mapper de Argentina, pregunta en nuestro [Discord](https://discord.gg/vrargentina)
-
-## Soporte
-Si encuentras algún problema o tienes alguna sugerencia, por favor, abre un issue en este repositorio de GitHub.
-
-¡Gracias por colaborar en el proyecto Beat Saber Argentina Mapping Collaborations!
