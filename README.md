@@ -30,14 +30,14 @@ Para ejecutar los comandos necesitas tener `git` instalado, puedes descargarlo d
 1. Abre una terminal o CMD y navega a la carpeta donde deseas almacenar el proyecto o haz click derecho dentro de la carpeta y en `Abrir en Terminal`.
 2. Ejecuta el siguiente comando:
 ```bash
-git clone https://github.com/tu-usuario/BSArgMappingCollabs.git
+git clone https://github.com/Elecast2/BSArgMappingCollabs.git
 ```
 3. Cambia al directorio del proyecto:
 ```bash
 cd BSArgMappingCollabs
 ```
 
-### Actualizar el Proyecto
+### Actualizar el Proyecto Local
 
 Para asegurarte de que tienes la versión más reciente del proyecto, realiza los siguientes pasos:
 
@@ -48,9 +48,20 @@ Para asegurarte de que tienes la versión más reciente del proyecto, realiza lo
 git pull origin main
 ```
 
+### Actualizar el Proyecto Remoto
+
+Si ya hiciste cambios a tu parte, sigue los siguientes pasos para actualizar el proyecto remoto:
+1. Coloca los archivos .dat dentro de `Nombre del Mapa/Parts/TuNombre`
+2. Abre una terminal o CMD en la dirección principal del proyecto y ejecuta los siguientes comandos para actualualizar el proyecto remoto:
+```bash
+git add ./Nombre del Mapa/Parts/TuNombre
+git commit -m "Mensaje corto explicando muy brevemente los cambios, Ejemplo: Añadí mas paredes porque Derek me miro feo"
+git push origin main
+```
+
 ## Ejecución del Script
 
-Antes de ejecutar el script, asegúrate de colocar tus partes correspondientes (.dat) dentro de `/Parts/TuNombre`.
+Antes de ejecutar el script, asegúrate de colocar tus partes correspondientes (.dat) dentro de `Nombre del Mapa/Parts/TuNombre`.
 
 Para combinar las partes en un solo mapa, sigue estos pasos:
 
