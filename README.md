@@ -1,4 +1,4 @@
-# BSArgMappingCollabs (Beat Saber Argentina Mapping Collabs)
+# Beat Saber Argentina Mapping Collabs
 
 ## Descripción
 Este proyecto tiene como objetivo facilitar la colaboración en la creación de mapas para Beat Saber entre miembros de la comunidad argentina. Permite combinar las contribuciones de varios usuarios en un único mapa de Beat Saber. Los colaboradores deben incluir sus partes en la subcarpeta correspondiente dentro de `/Parts` y luego ejecutar `merge.js` para combinarlas, generando los archivos `.dat` en la carpeta `/Output`.
