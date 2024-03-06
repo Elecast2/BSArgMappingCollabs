@@ -1,0 +1,57 @@
+{
+  "_version": "2.2.0",
+  "_customData": {
+    "_time": 132,
+    "_BPMChanges": [],
+    "_bookmarks": [
+      {
+        "_time": 3,
+        "_name": "MANOLORETURNS"
+      },
+      {
+        "_time": 25.5,
+        "_name": "ANDRES"
+      },
+      {
+        "_time": 58,
+        "_name": "DEREK"
+      },
+      {
+        "_time": 90,
+        "_name": "FECO"
+      },
+      {
+        "_time": 122,
+        "_name": "QWERTY"
+      },
+      {
+        "_time": 186,
+        "_name": "DARTURR"
+      },
+      {
+        "_time": 217.5,
+        "_name": "ANDRES"
+      },
+      {
+        "_time": 250,
+        "_name": "DARTURR"
+      },
+      {
+        "_time": 282,
+        "_name": "DEREK"
+      },
+      {
+        "_time": 322,
+        "_name": "ELECAST"
+      },
+      {
+        "_time": 385.5,
+        "_name": "Map Ends"
+      }
+    ]
+  },
+  "_events": [],
+  "_notes": [],
+  "_obstacles": [],
+  "_waypoints": []
+}
