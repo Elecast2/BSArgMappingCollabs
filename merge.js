@@ -44,7 +44,7 @@ function mergeDiff(diffFileName) {
                 if(!dataFormat) dataFormat = data;
             }
         }
-
+        //cambio para manolo
         // Ordenar después de combinar todos los archivos
         combinedNotes = combineAndSortArrays(combinedNotes);
         combinedObstacles = combineAndSortArrays(combinedObstacles);
