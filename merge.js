@@ -1,13 +1,82 @@
 const fs = require('fs');
 const path = require('path');
 
-const mapPath = './' + process.argv[2];
+const folderName = process.argv[2];
+if (!folderName) {
+    console.log('Por favor, especifica el nombre de la carpeta del mapa.');
+    return;
+}
 
-const partsPath = mapPath + '/Parts';
-const outputPath = mapPath + '/Output';
+const mapPath = path.join(__dirname, folderName);
+const partsPath = path.join(mapPath, '/Parts');
+const outputPath = path.join(mapPath, '/Output');
+const localFilePath = path.join(mapPath, 'local_path.txt');
 const diffFileNames = ['EasyStandard','NormalStandard','HardStandard','ExpertStandard','ExpertPlusStandard'];
 
 let dataFormat = false;
+
+if(!fs.existsSync(mapPath)) {
+    console.log("No hay mapa con ese nombre");
+    return;
+}
+
+// Verificar si el archivo local_path.txt existe
+if (!fs.existsSync(localFilePath)) {
+    fs.writeFileSync(localFilePath, 'local_map_path=none\nmapper_folder_name=none');
+}
+
+const content = fs.readFileSync(localFilePath, 'utf8');
+const localMapLine = content.split('\n')[0];
+const mapperFolderLine = content.split('\n')[1];
+const localMapPath = localMapLine.split('=')[1];
+const mapperFolderName = mapperFolderLine.split('=')[1];
+
+// Verificar si la ruta especificada es una carpeta
+if (localMapPath == "none" || mapperFolderName == "none") {
+    if (localMapPath == "none") {
+        console.log('Aún no has especificado la carpeta local de tu mapa, ve a ./' + folderName 
+            + '/local_path.txt y cambia "none" en "local_map_path" por la dirección de tu mapa local');
+    }
+    if (mapperFolderName == "none") {
+        console.log('Aún no has especificado el nombre de la carpeta con tus partes, ve a ./' + folderName 
+            + '/local_path.txt y cambia "none" en "mapper_folder_name" por el nombre de la carpeta donde van tus partes. ' +
+                'Revisa ./' + folderName + '/Parts');
+    }
+    return;
+}
+if (!fs.existsSync(localMapPath) || !fs.lstatSync(localMapPath).isDirectory()) {
+    console.log('Error: La ruta especificada en local_path.txt no es válida o no es una carpeta.');
+    return;
+}
+
+const mapperFolderPath = path.join(partsPath, '/' + mapperFolderName);
+
+if (!fs.existsSync(mapperFolderPath)) {
+    console.log('Error: El nombre de la carpeta del mapper especificado en local_path.txt no existe: ' + mapperFolderPath);
+    return;
+}
+
+// Copiar los archivos locales a la carpeta de partes
+diffFileNames.forEach(fileName => {
+    const sourceFile = path.join(localMapPath, fileName + '.dat');
+    const destFile = path.join(mapperFolderPath, fileName + '.dat');
+    if (fs.existsSync(sourceFile)) {
+      fs.copyFileSync(sourceFile, destFile);
+      console.log(`Archivo Local ${fileName}.dat copiado a /Parts/${mapperFolderName}.`);
+    }
+});
+
+
+if (!fs.existsSync(outputPath)) {
+    fs.mkdirSync(outputPath, { recursive: true });
+}
+
+for(var i = diffFileNames.length - 1; i >= 0 ; i--) {
+    mergeDiff(diffFileNames[i]);
+}
+
+//const mapsFolder = path.dirname(localMapPath);
+
 
 // Función para leer y parsear un archivo JSON
 function readJSON(filePath) {
@@ -22,6 +91,10 @@ function writeJSON(filePath, data) {
 // Función para combinar y ordenar los arrays
 function combineAndSortArrays(arrays) {
     return arrays.flat().sort((a, b) => a._time - b._time);
+}
+
+function copyLocalToParts(diffFileName) {
+
 }
 
 function mergeDiff(diffFileName) {
@@ -64,21 +137,8 @@ function mergeDiff(diffFileName) {
         // Escribir el archivo actualizado
         writeJSON(filePath, mainData);
     
-        console.log('Archivo '+diffFileName+'.dat actualizado con éxito.');
+        console.log('Se ha creado el archivo combinado '+diffFileName+'.dat con éxito.');
 
         fs.copyFileSync(mapPath+"/Info.dat", outputPath+"/Info.dat");
     });
-}
-
-if(!fs.existsSync(mapPath)) {
-    console.log("No hay mapa con ese nombre");
-    return;
-}
-
-if (!fs.existsSync(outputPath)) {
-    fs.mkdirSync(outputPath, { recursive: true });
-}
-
-for(var i = diffFileNames.length - 1; i >= 0 ; i--) {
-    mergeDiff(diffFileNames[i]);
 }
