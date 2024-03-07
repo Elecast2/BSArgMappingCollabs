@@ -75,7 +75,31 @@ for(var i = diffFileNames.length - 1; i >= 0 ; i--) {
     mergeDiff(diffFileNames[i]);
 }
 
-//const mapsFolder = path.dirname(localMapPath);
+const finalMapFolder = path.join(localMapPath, '..', path.basename(localMapPath) + ' [Final]');
+if (!fs.existsSync(finalMapFolder)){
+    fs.mkdirSync(finalMapFolder);
+}
+
+// Copiar los archivos de output a la carpeta local final
+diffFileNames.concat("Info").forEach(fileName => {
+    const sourceFile = path.join(outputPath, fileName + '.dat');
+    const destFile = path.join(finalMapFolder, fileName + '.dat');
+    if (fs.existsSync(sourceFile)) {
+      fs.copyFileSync(sourceFile, destFile);
+      console.log(`Archivo Final ${fileName}.dat copiado a ${finalMapFolder}`);
+    }
+});
+
+//Copiar song y cover a la carpeta local final
+const extraFiles = ['song.ogg','cover.jpg','cover.png'];// TODO Obtener nombres del Info.dat
+extraFiles.forEach(fileName => {
+    const sourceFile = path.join(localMapPath, fileName);
+    const destFile = path.join(finalMapFolder, fileName);
+    if (fs.existsSync(sourceFile)) {
+      fs.copyFileSync(sourceFile, destFile);
+      console.log(`Archivo Final ${fileName} copiado a ${finalMapFolder}`);
+    }
+});
 
 
 // Función para leer y parsear un archivo JSON
@@ -93,16 +117,9 @@ function combineAndSortArrays(arrays) {
     return arrays.flat().sort((a, b) => a._time - b._time);
 }
 
-function copyLocalToParts(diffFileName) {
-
-}
-
 function mergeDiff(diffFileName) {
-    fs.readdir(partsPath, (err, subfolders) => {
-        if (err) {
-            console.error('Error reading the Parts directory:', err);
-            return;
-        }
+    let subfolders = fs.readdirSync(partsPath);
+    if(subfolders) {
     
         let combinedNotes = [];
         let combinedObstacles = [];
@@ -140,5 +157,5 @@ function mergeDiff(diffFileName) {
         console.log('Se ha creado el archivo combinado '+diffFileName+'.dat con éxito.');
 
         fs.copyFileSync(mapPath+"/Info.dat", outputPath+"/Info.dat");
-    });
+    }
 }
