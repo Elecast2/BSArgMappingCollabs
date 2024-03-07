@@ -65,6 +65,8 @@ function mergeDiff(diffFileName) {
         writeJSON(filePath, mainData);
     
         console.log('Archivo '+diffFileName+'.dat actualizado con éxito.');
+
+        fs.copyFileSync(mapPath+"/Info.dat", outputPath+"/Info.dat");
     });
 }
 
