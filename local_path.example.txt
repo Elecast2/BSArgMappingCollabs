@@ -1,0 +1,2 @@
+local_map_path=C:\BSManager\BSInstances\1.29.1\Beat Saber_Data\CustomWIPLevels\MapName
+mapper_folder_name=Mapper Name
