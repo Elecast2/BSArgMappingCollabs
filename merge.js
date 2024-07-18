@@ -117,27 +117,55 @@ function combineAndSortArrays(arrays) {
     return arrays.flat().sort((a, b) => a._time - b._time);
 }
 
+function combineAndSortArraysV3(arrays) {
+    return arrays.flat().sort((a, b) => a.b - b.b);
+}
+
 function mergeDiff(diffFileName) {
     let subfolders = fs.readdirSync(partsPath);
     if(subfolders) {
     
         let combinedNotes = [];
         let combinedObstacles = [];
-
+        let combinedBombNotes = [];
+        let combinedSliders = [];
+        let combinedBurstSliders = [];
+        let dataFormat = null;
     
         for (const subfolder of subfolders) {
-            const filePath = path.join(partsPath, subfolder, diffFileName+'.dat');
+            const filePath = path.join(partsPath, subfolder, diffFileName + '.dat');
             if (fs.existsSync(filePath)) {
                 const data = readJSON(filePath);
-                combinedNotes.push(...data._notes);
-                combinedObstacles.push(...data._obstacles);
-                if(!dataFormat) dataFormat = data;
+                if (data.version.startsWith('2')) {
+                    combinedNotes.push(...data._notes);
+                    combinedObstacles.push(...data._obstacles);
+                } else if (data.version.startsWith('3')) {
+                    combinedNotes.push(...data.colorNotes);
+                    combinedBombNotes.push(...data.bombNotes);
+                    combinedObstacles.push(...data.obstacles);
+                    combinedSliders.push(...data.sliders);
+                    combinedBurstSliders.push(...data.burstSliders);
+                }
+                if (!dataFormat) dataFormat = data;
+            }
+            else {
+                console.log("No se encontró la dificultad: " + diffFileName);
+                return;
             }
         }
 
         // Ordenar después de combinar todos los archivos
-        combinedNotes = combineAndSortArrays(combinedNotes);
-        combinedObstacles = combineAndSortArrays(combinedObstacles);
+        if (dataFormat.version.startsWith('2')) {
+            combinedNotes = combineAndSortArrays(combinedNotes);
+            combinedObstacles = combineAndSortArrays(combinedObstacles);
+        }
+        else if (dataFormat.version.startsWith('3')) {
+            combinedNotes = combineAndSortArraysV3(combinedNotes);
+            combinedObstacles = combineAndSortArraysV3(combinedObstacles);
+            combinedBombNotes = combineAndSortArraysV3(combinedBombNotes);
+            combinedSliders = combineAndSortArraysV3(combinedSliders);
+            combinedBurstSliders = combineAndSortArraysV3(combinedBurstSliders);
+        }
     
         // Leer el archivo principal y actualizar los arrays
         const filePath = path.join(outputPath, diffFileName+'.dat');
@@ -148,8 +176,16 @@ function mergeDiff(diffFileName) {
         }
 
         const mainData = readJSON(filePath);
-        mainData._notes = combinedNotes;
-        mainData._obstacles = combinedObstacles;
+        if (mainData.version.startsWith('2')) {
+            mainData._notes = combinedNotes;
+            mainData._obstacles = combinedObstacles;
+        } else if (mainData.version.startsWith('3')) {
+            mainData.colorNotes = combinedNotes;
+            mainData.bombNotes = combinedBombNotes;
+            mainData.obstacles = combinedObstacles;
+            mainData.sliders = combinedSliders;
+            mainData.burstSliders = combinedBurstSliders;
+        }
     
         // Escribir el archivo actualizado
         writeJSON(filePath, mainData);
