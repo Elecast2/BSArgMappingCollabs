@@ -85,8 +85,15 @@ diffFileNames.concat("Info").forEach(fileName => {
     const sourceFile = path.join(outputPath, fileName + '.dat');
     const destFile = path.join(finalMapFolder, fileName + '.dat');
     if (fs.existsSync(sourceFile)) {
-      fs.copyFileSync(sourceFile, destFile);
-      console.log(`Archivo Final ${fileName}.dat copiado a ${finalMapFolder}`);
+        if (fileName === "Info") {
+            // Read, modify, and write the Info.dat file
+            const infoData = readJSON(sourceFile);
+            infoData._songName = "[Final] " + infoData._songName;
+            writeJSON(destFile, infoData);
+        } else {
+            fs.copyFileSync(sourceFile, destFile);
+        }
+        console.log(`Archivo Final ${fileName}.dat copiado a ${finalMapFolder}`);
     }
 });
 
