@@ -23,6 +23,15 @@
       "_beatmapCharacteristicName" : "Standard",
       "_difficultyBeatmaps" : [
         {
+          "_difficulty" : "Expert",
+          "_difficultyRank" : 7,
+          "_beatmapFilename" : "ExpertStandard.dat",
+          "_noteJumpMovementSpeed" : 18,
+          "_noteJumpStartBeatOffset" : -0.75,
+          "_beatmapColorSchemeIdx" : 0,
+          "_environmentNameIdx" : 0
+        },
+        {
           "_difficulty" : "ExpertPlus",
           "_difficultyRank" : 9,
           "_beatmapFilename" : "ExpertPlusStandard.dat",
