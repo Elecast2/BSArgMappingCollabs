@@ -111,6 +111,7 @@ extraFiles.forEach(fileName => {
 
 // Función para leer y parsear un archivo JSON
 function readJSON(filePath) {
+    console.log("reading " + filePath);
     return JSON.parse(fs.readFileSync(filePath, 'utf8'));
 }
 
