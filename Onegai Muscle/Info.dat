@@ -8,10 +8,10 @@
   "_songTimeOffset" : 0,
   "_shuffle" : 0,
   "_shufflePeriod" : 0.5,
-  "_previewStartTime" : 12,
-  "_previewDuration" : 10,
+  "_previewStartTime" : 140,
+  "_previewDuration" : 35,
   "_songFilename" : "song.ogg",
-  "_coverImageFilename" : "cover.png",
+  "_coverImageFilename" : "cover.jpg",
   "_environmentName" : "DefaultEnvironment",
   "_allDirectionsEnvironmentName" : "GlassDesertEnvironment",
   "_environmentNames" : [
@@ -47,8 +47,50 @@
     "_editors" : {
       "_lastEditedBy" : "ChroMapper",
       "ChroMapper" : {
-        "version" : "0.10.763"
+        "version" : "0.10.779"
       }
-    }
+    },
+    "_contributors" : [
+      {
+        "_name" : "Andres",
+        "_role" : "Mapper",
+        "_iconPath" : "Andres.jpg"
+      },
+      {
+        "_name" : "Darturr",
+        "_role" : "Mapper",
+        "_iconPath" : "Darturr.jpg"
+      },
+      {
+        "_name" : "Dereknalox123",
+        "_role" : "Mapper",
+        "_iconPath" : "Dereknalox123.jpg"
+      },
+      {
+        "_name" : "Elecast",
+        "_role" : "Mapper",
+        "_iconPath" : "Elecast.jpg"
+      },
+      {
+        "_name" : "Feco",
+        "_role" : "Mapper",
+        "_iconPath" : "Feco.jpg"
+      },
+      {
+        "_name" : "Manoloreturns",
+        "_role" : "Mapper",
+        "_iconPath" : "ManoloReturns.jpg"
+      },
+      {
+        "_name" : "Qwerty",
+        "_role" : "Mapper",
+        "_iconPath" : "Qwerty.jpg"
+      },
+      {
+        "_name" : "Uadyet",
+        "_role" : "Mapper",
+        "_iconPath" : "Uadyet.jpg"
+      }
+    ]
   }
 }
