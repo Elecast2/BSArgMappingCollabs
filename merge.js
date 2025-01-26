@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { exec } = require('child_process');
 
 const folderName = process.argv[2];
 if (!folderName) {
@@ -107,6 +108,24 @@ extraFiles.forEach(fileName => {
       console.log(`Archivo Final ${fileName} copiado a ${finalMapFolder}`);
     }
 });
+
+const lightsScriptPath = path.join(mapPath, 'lights', 'lights.js');
+const lightsFolderPath = path.dirname(lightsScriptPath);
+
+if (fs.existsSync(lightsScriptPath)) {
+    exec(`node "${lightsScriptPath}"`, { cwd: lightsFolderPath }, (error, stdout, stderr) => {
+        if (error) {
+            console.error(`Error al ejecutar lights.js: ${error.message}`);
+            return;
+        }
+        if (stderr) {
+            console.error(`stderr: ${stderr}`);
+        }
+        console.log(`Luces encontradas, ejecutando lights.js...:\n${stdout}`);
+    });
+} else {
+    console.log('No se encontró lights.js en MapFolder/lights, se omitió la ejecución.');
+}
 
 
 // Función para leer y parsear un archivo JSON
