@@ -1217,13 +1217,13 @@ function applyChromaToFile(fileName, keepEvents) {
   
     //Aplicamos los valores
     if(v3) {
-        difficulty.basicBeatmapEvents = _events;
         //difficulty.customData = { environment: [], customEvents: [] , materials: {}};
-        if(keepEvents && difficulty.customData.customEvents) {
-            for(var i = 0; i < difficulty.customData.customEvents.length; i++) {
-                _customEvents.push(difficulty.customData.customEvents[i]);
+        if(keepEvents) {
+            for(var i = 0; i < difficulty.basicBeatmapEvents.length; i++) {
+                _events.push(difficulty.basicBeatmapEvents[i]);
             }
         }
+        difficulty.basicBeatmapEvents = _events;
         difficulty.customData.environment = [];
         difficulty.customData.customEvents = [];
         difficulty.customData.fakeColorNotes = [];

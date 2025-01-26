@@ -40,11 +40,5 @@ chroma._environment.push(
 
 bm.setupRotatingLights(true);
 
-chroma.light(10, 0, 1, [1,1,1,1]);
-chroma.light(10, 1, 1, [1,1,0,1]);
-chroma.light(10, 2, 1, [0,1,1,1]);
-chroma.light(10, 3, 1, [0,1,1,1]);
-chroma.light(10, 4, 1, [0,0,1,1]);
-
 //Aplicamos chroma a todas las dificultades
-chroma.applyChroma();
+chroma.applyChroma(true);
