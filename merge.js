@@ -156,6 +156,7 @@ function mergeDiff(diffFileName) {
         let combinedBombNotes = [];
         let combinedSliders = [];
         let combinedBurstSliders = [];
+        let combinedBasicBeatmapEvents = [];
         let dataFormat = null;
     
         for (const subfolder of subfolders) {
@@ -171,6 +172,7 @@ function mergeDiff(diffFileName) {
                     combinedObstacles.push(...data.obstacles);
                     combinedSliders.push(...data.sliders);
                     combinedBurstSliders.push(...data.burstSliders);
+                    combinedBasicBeatmapEvents.push(...data.basicBeatmapEvents);
                 }
                 if (!dataFormat) dataFormat = data;
             }
@@ -191,6 +193,7 @@ function mergeDiff(diffFileName) {
             combinedBombNotes = combineAndSortArraysV3(combinedBombNotes);
             combinedSliders = combineAndSortArraysV3(combinedSliders);
             combinedBurstSliders = combineAndSortArraysV3(combinedBurstSliders);
+            combinedBasicBeatmapEvents = combineAndSortArraysV3(combinedBasicBeatmapEvents);
         }
     
         // Leer el archivo principal y actualizar los arrays
@@ -211,6 +214,7 @@ function mergeDiff(diffFileName) {
             mainData.obstacles = combinedObstacles;
             mainData.sliders = combinedSliders;
             mainData.burstSliders = combinedBurstSliders;
+            mainData.basicBeatmapEvents = combinedBasicBeatmapEvents;
         }
     
         // Escribir el archivo actualizado
