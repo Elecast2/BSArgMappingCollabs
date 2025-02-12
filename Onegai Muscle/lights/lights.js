@@ -3,7 +3,7 @@ const chroma = require("./chroma");
 const bm = require("./bigmirror");
 
 //ejecutamos la preparacion de chroma
-chroma.setupChroma(bm.environmentName, true, true, [], true);
+chroma.setupChroma(bm.environmentName, true, true, ["Andres.jpg","Darturr.jpg","Dereknalox123.jpg","Elecast.jpg","Feco.jpg","ManoloReturns.jpg","Qwerty.jpg","Uadyet.jpg"], true);
 
 //--- AREA DE TRABAJO ---
 
