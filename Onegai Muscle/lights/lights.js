@@ -11,8 +11,6 @@ chroma.fixStartingLights();
 chroma.copyEnvironment(false);
 
 
-// ---- WORK AREA -------
-
 chroma.disableEnvironmentObject("Spectrograms", "EndsWith");
 chroma.disableEnvironmentObject("NeonTubeDirectionalL", "EndsWith");
 chroma.disableEnvironmentObject("NeonTubeDirectionalFL", "EndsWith");
@@ -59,6 +57,14 @@ chroma.moveGeomtetryGroupOS(2.6, 1.5, logoB, [0,height,depth], [60,-60,depth], "
 chroma.moveGeomtetryGroupOS(2.7, 1.5, logoC, [0,height,depth], [60,60,depth], "easeOutCubic");
 chroma.moveGeomtetryGroupOS(2.8, 1.5, textA, [0,height,depth], [-60,-60,depth], "easeOutCubic");
 chroma.moveGeomtetryGroupOS(2.9, 1.5, textB, [0,height,depth], [0,60,depth], "easeOutCubic");
+
+bm.ringsZoom(0, 20, 0, 1);
+
+
+//Elecast part
+bm.lightRings(277, 16, [1,0,1,1]);
+bm.ringsZoom(277, 0, 20, 7, 0, -45);
+bm.ringsZoom(284, 20, 0, 1, -45, 0);
 
 //Aplicamos chroma a todas las dificultades
 chroma.applyChroma(true);

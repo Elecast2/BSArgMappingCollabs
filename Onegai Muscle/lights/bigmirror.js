@@ -218,8 +218,8 @@ module.exports = {
         chroma.pushLightEvent(time, type, 0, null, id);
     },
 
-    ringsZoom: function (time, step, duration, v3, customZ) {
-        customRingsZoom(time, step, duration, v3, customZ);
+    ringsZoom: function (time, from, to, duration, fromZ, toZ) {
+        customRingsZoom(time, from, to, duration, fromZ, toZ);
     },
 
     ringsZoomReset: function (time, duration) {
@@ -742,42 +742,24 @@ module.exports = {
 
 };
 
-function customRingsZoom(time, step, duration, v3, customZ) {
-    var zVal = (customZ&&customZ!=ringsZ)? customZ : ringsZ;
+function customRingsZoom(time, from, to, duration, fromZ, toZ) {
+    fromZ = fromZ ? fromZ : 0;
+    toZ = toZ ? toZ : 0;
     for(var i = 15; i >= 1; i--) {
-        if(v3) {
-            chroma._customEvents.push(
-                {
-                    "b": time,
-                    "t": "AnimateTrack",
-                    "d": {
-                        "track": "r"+i,
-                        "duration": duration,
-                        "position": [
-                            [0, 0, ringsOffset[i-1], 0],
-                            [0, 0, zVal + step*i, 1, "easeOutSine"],
-                        ]
-                    }
+        chroma._customEvents.push(
+            {
+                "b": time,
+                "t": "AnimateTrack",
+                "d": {
+                    "track": "r"+i,
+                    "duration": duration,
+                    "position": [
+                        [0, 2, fromZ+18+from*(i-1), 0],
+                        [0, 2, toZ+18+to*(i-1), 1, "easeOutSine"],
+                    ]
                 }
-            )
-        }
-        else {
-            chroma._customEvents.push(
-                {
-                    "_time": time,
-                    "_type": "AnimateTrack",
-                    "_data": {
-                        "_track": "r"+i,
-                        "_duration": duration,
-                        "_localPosition": [
-                            [0, 5, ringsOffset[i-1], 0],
-                            [0, 5, zVal + step*i, 1, "easeOutSine"],
-                        ]
-                    }
-                }
-            )
-        }
-        ringsOffset[i-1] = zVal + step*i;
+            }
+        )
     }
 }
 
